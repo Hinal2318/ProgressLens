@@ -60,4 +60,3 @@ progresslens/
         └── index.css    # Global design tokens & base styles
 ```
 
-<p align="center">Built with ❤️ using the MERN Stack</p>
