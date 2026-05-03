@@ -1,0 +1,66 @@
+.student-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.empty-state-card {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.empty-state-card h3 {
+  margin-top: 16px;
+}
+
+.empty-state-card p {
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+
+.project-type-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent-light);
+  color: var(--accent-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-info {
+  margin-top: 16px;
+}
+
+.project-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.card-footer {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--bg-secondary);
+}

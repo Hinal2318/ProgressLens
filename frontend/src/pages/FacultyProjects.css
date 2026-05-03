@@ -1,0 +1,230 @@
+.faculty-projects-page {
+  padding: 40px;
+  background-color: #f8fafc;
+  min-height: 100vh;
+  font-family: 'Outfit', sans-serif;
+}
+
+.page-header-premium {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.header-text p {
+  margin: 8px 0 0 0;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  width: 300px;
+  transition: all 0.2s;
+}
+
+.search-box:focus-within {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.search-icon {
+  color: #94a3b8;
+  margin-right: 10px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
+  color: #1e293b;
+}
+
+.projects-grid-premium {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.project-card-premium {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-premium:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.title-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-wrap {
+  width: 40px;
+  height: 40px;
+  background: #eef2ff;
+  color: #6366f1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-area h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-badge.on-track { background: #dcfce7; color: #15803d; }
+.status-badge.needs-attention { background: #fef3c7; color: #b45309; }
+.status-badge.at-risk { background: #fee2e2; color: #b91c1c; }
+.status-badge.completed { background: #f1f5f9; color: #475569; }
+.status-badge.in-progress { background: #e0f2fe; color: #0369a1; }
+
+.project-details {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.progress-section {
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.label-text { font-size: 0.8rem; color: #64748b; font-weight: 600; }
+.label-value { font-size: 0.8rem; color: #1e293b; font-weight: 800; }
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.card-actions {
+  margin-top: auto;
+}
+
+.view-btn-premium {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-btn-premium:hover {
+  background: #1e293b;
+  color: white;
+  border-color: #1e293b;
+}
+
+.empty-state-premium {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  background: white;
+  border-radius: 20px;
+  border: 1px dashed #cbd5e1;
+  text-align: center;
+}
+
+.empty-icon {
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.empty-state-premium h3 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+  font-size: 1.25rem;
+}
+
+.empty-state-premium p {
+  margin: 0;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .page-header-premium {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .search-box { width: 100%; }
+}

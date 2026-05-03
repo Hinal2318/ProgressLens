@@ -1,0 +1,142 @@
+/* Activity.css */
+:root {
+  --primary: #2563eb;
+  --bg-main: #f8fafc;
+  --text-main: #1e293b;
+  --text-sub: #64748b;
+  --border: #e2e8f0;
+  --card-bg: #ffffff;
+}
+
+.activity-container {
+  max-width: 800px;
+  margin: 8px auto;
+  padding: 0 20px;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.activity-header {
+  margin-bottom: 48px;
+  text-align: left;
+}
+
+.activity-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+
+.activity-header p {
+  color: var(--text-sub);
+  font-size: 16px;
+}
+
+/* Timeline Track */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+/* Vertical Line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+
+/* Interactive Timeline Dot */
+.timeline-dot {
+  position: absolute;
+  left: -32px;
+  top: 12px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #cbd5e1;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* Category Colors */
+.timeline-dot.task { border-color: #22c55e; background: #22c55e; box-shadow: 0 0 0 4px #dcfce7; }
+.timeline-dot.project { border-color: #3b82f6; background: #3b82f6; box-shadow: 0 0 0 4px #dbeafe; }
+.timeline-dot.milestone { border-color: #f59e0b; background: #f59e0b; box-shadow: 0 0 0 4px #fef3c7; }
+.timeline-dot.reflection { border-color: #a855f7; background: #a855f7; box-shadow: 0 0 0 4px #f3e8ff; }
+
+/* Timeline Card */
+.timeline-content {
+  background: var(--card-bg);
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateX(8px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-text {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 16px;
+}
+
+.timestamp {
+  font-size: 13px;
+  color: var(--text-sub);
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.project-badge {
+  font-size: 13px;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-badge strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Empty State Styling */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 16px;
+  border: 2px dashed var(--border);
+}
+
+.empty-state p {
+  color: var(--text-sub);
+  font-size: 16px;
+}

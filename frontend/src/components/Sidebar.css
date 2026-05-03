@@ -1,0 +1,64 @@
+.sidebar {
+  width: 260px;
+  background: #0f172a; /* Slate 900 */
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #cbd5e1;
+  z-index: 1001; /* Keeps sidebar above Navbar on the left */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  height: 64px; /* Align perfectly with Navbar height */
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #3b82f6; /* Single logo placement */
+  border-bottom: 1px solid #1e293b;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background: #1e293b;
+  color: #f8fafc;
+  border-left-color: #3b82f6; /* Professional blue indicator */
+}
+
+.sidebar-logout-btn {
+  margin: 20px;
+  padding: 12px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+}

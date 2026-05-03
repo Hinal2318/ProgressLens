@@ -1,0 +1,11 @@
+.faculty-layout {
+  display: flex;
+}
+
+.faculty-content {
+  margin-left: 240px;
+  padding: 30px;
+  width: calc(100% - 240px);
+  background: #f8fafc;
+  min-height: 100vh;
+}

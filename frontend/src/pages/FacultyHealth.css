@@ -1,0 +1,258 @@
+/* 1. Page Container & Layout */
+.faculty-health-page {
+  padding: 40px;
+  background-color: #f8fafc; /* Professional light slate background */
+  min-height: 100vh;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a; /* Slate-900 */
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: #64748b; /* Slate-500 */
+  font-size: 1rem;
+}
+
+/* 2. Analysis Dashboard */
+.health-analysis-dashboard {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.health-summary-cards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.h-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.h-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+}
+
+.h-card h3 { font-size: 1.5rem; margin: 0; font-weight: 800; color: #0f172a; }
+.h-card span { font-size: 0.85rem; font-weight: 600; color: #64748b; }
+
+.h-card.total { color: #6366f1; }
+.h-card.on-track { color: #10b981; }
+.h-card.needs-attention { color: #f59e0b; }
+.h-card.at-risk { color: #ef4444; }
+
+.health-chart-section {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.health-chart-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+}
+
+.chart-info { flex: 1; }
+.chart-info h3 { margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 800; color: #1e293b; }
+.chart-info p { margin: 0 0 16px 0; color: #64748b; font-size: 0.9rem; }
+
+.action-alert {
+  background: #fef2f2;
+  color: #b91c1c;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  border: 1px solid #fee2e2;
+}
+
+.chart-graphic { flex: 1; min-width: 250px; }
+
+/* 3. Filter Buttons Styling */
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 4px;
+  background: #f1f5f9;
+  width: fit-content;
+  border-radius: 12px;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover {
+  color: #0f172a;
+}
+
+.filter-btn.active {
+  background: #ffffff;
+  color: #2563eb; /* ProgressLens Blue */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 3. Health Grid & Cards */
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.health-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.health-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-top h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* 4. Status Pills (Matched to Faculty Dashboard logic) */
+.status-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.status-pill.on-track { background: #dcfce7; color: #166534; }
+.status-pill.needs-attention { background: #fef9c3; color: #854d0e; }
+.status-pill.at-risk { background: #fee2e2; color: #991b1b; }
+
+/* 5. Progress Bar Styling */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-fill.green { background: #22c55e; }
+.progress-fill.yellow { background: #eab308; }
+.progress-fill.red { background: #ef4444; }
+
+/* 6. Action Button */
+.view-details-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #f8fafc;
+  color: #2563eb;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+
+.view-details-btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* 7. Feedback States */
+.loading-state, .error-state, .no-data {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.error-state { color: #ef4444; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+  .health-analysis-dashboard { flex-direction: column; }
+  .health-summary-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .health-summary-cards { grid-template-columns: 1fr; }
+  .health-chart-section { flex-direction: column; text-align: center; }
+  .chart-graphic { width: 100%; min-height: 250px; }
+}
