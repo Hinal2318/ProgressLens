@@ -329,7 +329,14 @@ export default function ProjectDetails() {
           {activeTab === "tasks" && (
             <div className="tasks-container">
               <div className="kanban-wrapper">
-                <KanbanBoard projectId={id} onTaskUpdate={fetchProjectData} />
+                <KanbanBoard 
+                  projectId={id} 
+                  tasks={tasks} 
+                  setTasks={setTasks} 
+                  isManager={isManager} 
+                  onDeleteTask={handleDeleteTask} 
+                  onTaskUpdate={fetchProjectData} 
+                />
               </div>
               
               {isManager && (

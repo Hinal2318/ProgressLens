@@ -16,15 +16,16 @@ const getTasksByProject = async (req, res) => {
 // ✅ CREATE Task (Consolidated & Standardized)
 const createTask = async (req, res) => {
     try {
-        const { title, project, date, ownerId } = req.body;
+        const { title, project, date, dueDate, ownerId, priority } = req.body;
 
         // Ensure we handle the date correctly as dueDate
         const task = new Task({
             title,
             project,
-            dueDate: date, 
+            dueDate: dueDate || date, 
             owner: ownerId || req.user.id,
-            status: "To Do"
+            status: "To Do",
+            priority: priority || "Medium"
         });
 
         const savedTask = await task.save();
@@ -85,8 +86,18 @@ const updateTask = async (req, res) => {
 // ✅ DELETE Task
 const deleteTask = async (req, res) => {
     try {
-        const task = await Task.findByIdAndDelete(req.params.taskId);
+        const task = await Task.findById(req.params.taskId);
         if (!task) return res.status(404).json({ message: "Task not found" });
+        
+        await Task.findByIdAndDelete(req.params.taskId);
+        
+        // Log task deletion
+        await logActivity(
+            req.user.id, 
+            task.project, 
+            `Deleted task: "${task.title}"`, 
+            "Task"
+        );
         
         res.json({ message: "Task deleted successfully" });
     } catch (error) {

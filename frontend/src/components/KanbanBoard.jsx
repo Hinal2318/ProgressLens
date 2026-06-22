@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import API from "../services/api";
-import { User, Calendar, AlertCircle, Clock } from "lucide-react";
+import { User, Calendar, AlertCircle, Clock, Trash2 } from "lucide-react";
 import { differenceInDays, isPast, isToday } from "date-fns";
 import "./KanbanBoard.css";
 
@@ -23,19 +23,23 @@ const getDeadlineBadge = (date) => {
 };
 
 
-export default function KanbanBoard({ projectId, onTaskUpdate }) {
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function KanbanBoard({ projectId, tasks: propTasks, setTasks: propSetTasks, isManager, onDeleteTask, onTaskUpdate }) {
+  const [localTasks, setLocalTasks] = useState([]);
+  const tasks = propTasks !== undefined ? propTasks : localTasks;
+  const setTasks = propSetTasks !== undefined ? propSetTasks : setLocalTasks;
+  const [loading, setLoading] = useState(propTasks === undefined);
   const currentUserId = localStorage.getItem("userId");
 
   useEffect(() => {
-    if (projectId) fetchTasks();
-  }, [projectId]);
+    if (projectId && propTasks === undefined) {
+      fetchTasks();
+    }
+  }, [projectId, propTasks]);
 
   const fetchTasks = async () => {
     try {
       const res = await API.get(`/tasks/project/${projectId}`);
-      setTasks(res.data);
+      setLocalTasks(res.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
     } finally {
@@ -112,7 +116,21 @@ export default function KanbanBoard({ projectId, onTaskUpdate }) {
                               {...provided.dragHandleProps}
                               className={`kanban-task-card ${snapshot.isDragging ? "dragging" : ""}`}
                             >
-                              <div className={`task-priority-tag ${task.priority?.toLowerCase() || 'medium'}`}>{task.priority || "Medium"}</div>
+                              <div className="task-card-header">
+                                <div className={`task-priority-tag ${task.priority?.toLowerCase() || 'medium'}`}>{task.priority || "Medium"}</div>
+                                {((task.owner?._id || task.owner) === currentUserId || isManager) && onDeleteTask && (
+                                  <button 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      onDeleteTask(task._id);
+                                    }} 
+                                    className="task-delete-btn" 
+                                    title="Delete Task"
+                                  >
+                                    <Trash2 size={14} />
+                                  </button>
+                                )}
+                              </div>
                               <h4>{task.title}</h4>
                               
                               <div className="task-meta">

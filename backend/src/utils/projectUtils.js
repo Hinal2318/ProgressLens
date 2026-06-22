@@ -6,6 +6,6 @@
  */
 export const calculateProgress = (tasks) => {
   if (!tasks || tasks.length === 0) return 0;
-  const completed = tasks.filter(t => t.status === "Completed").length;
+  const completed = tasks.filter(t => t.status === "Done").length;
   return Math.round((completed / tasks.length) * 100);
 };

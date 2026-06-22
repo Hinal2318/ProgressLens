@@ -10,7 +10,7 @@ const getFacultyProjectsHealth = async (req, res) => {
       projects.map(async (project) => {
         const tasks = await Task.find({ project: project._id });
         const totalTasks = tasks.length;
-        const completedTasks = tasks.filter(t => t.status === "Completed").length;
+        const completedTasks = tasks.filter(t => t.status === "Done").length;
         const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
         const status = project.status || "On Track";
@@ -38,7 +38,7 @@ const getFacultySupervisedProjects = async (req, res) => {
     const projectsWithProgress = await Promise.all(
       projects.map(async (project) => {
         const tasks = await Task.find({ project: project._id });
-        const completedCount = tasks.filter(t => t.status === "Completed").length;
+        const completedCount = tasks.filter(t => t.status === "Done").length;
         const progress = tasks.length > 0 ? Math.round((completedCount / tasks.length) * 100) : 0;
         
         return {

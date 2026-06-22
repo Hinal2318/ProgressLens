@@ -68,7 +68,7 @@ const handleStatusUpdate = async (newStatus) => {
   // Use progress returned directly from the API (same source as student view)
   const progress = project?.progress ?? 0;
   const totalTasks = tasks.length;
-  const finishedTasks = tasks.filter(t => t.status === "Completed").length;
+  const finishedTasks = tasks.filter(t => t.status === "Done").length;
 
   if (loading) return <div className="fp-loading"><span>Syncing Academic Data...</span></div>;
 

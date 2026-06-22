@@ -36,7 +36,7 @@ const getProjectById = async (req, res) => {
 
     // Compute live progress from tasks (same formula used everywhere)
     const tasks = await Task.find({ project: project._id });
-    const completedCount = tasks.filter(t => t.status === "Completed").length;
+    const completedCount = tasks.filter(t => t.status === "Done").length;
     const progress = tasks.length > 0 ? Math.round((completedCount / tasks.length) * 100) : 0;
 
     res.json({ ...project._doc, progress });

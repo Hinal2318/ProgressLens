@@ -12,7 +12,7 @@ exports.getStudentDashboard = async (req, res) => {
       .populate("students", "name email");
 
     const tasks = await Task.find({ owner: userId });
-    const completedTasks = tasks.filter(t => t.status === "Completed").length;
+    const completedTasks = tasks.filter(t => t.status === "Done").length;
 
     const projectIds = projects.map(p => p._id);
     const milestones = await Milestone.find({ project: { $in: projectIds } });
@@ -20,7 +20,7 @@ exports.getStudentDashboard = async (req, res) => {
 
     const projectsWithProgress = await Promise.all(projects.map(async (project) => {
       const allTasks = await Task.find({ project: project._id });
-      const completedCount = allTasks.filter(t => t.status === "Completed").length;
+      const completedCount = allTasks.filter(t => t.status === "Done").length;
       const progress = allTasks.length > 0 ? Math.round((completedCount / allTasks.length) * 100) : 0;
       
       return {

@@ -11,7 +11,7 @@ exports.getUserProfile = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const totalProjects = await Project.countDocuments({ students: userId });
-    const completedTasks = await Task.countDocuments({ owner: userId, status: "Completed" });
+    const completedTasks = await Task.countDocuments({ owner: userId, status: "Done" });
     const pendingMilestones = await Milestone.countDocuments({ 
       student: userId, 
       status: { $ne: "Reviewed" } 
