@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { AnimatePresence, motion } from "framer-motion";
 
 // Page Imports
-import Auth from "./pages/Auth"; 
+import Auth from "./pages/auth"; 
 import Profile from "./pages/Profile";
 import ProjectDetails from "./pages/ProjectDetails";
 import Unauthorized from "./pages/Unauthorized";

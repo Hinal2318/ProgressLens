@@ -2,7 +2,7 @@ import { useState } from "react";
 import API from "../services/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { LogIn, UserPlus, AlertCircle } from "lucide-react";
-import "./Auth.css";
+import "./auth.css";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
