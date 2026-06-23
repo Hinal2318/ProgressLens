@@ -146,7 +146,7 @@ const inviteTeammate = async (req, res) => {
     if (!invitedUser) return res.status(404).json({ message: `Student with email ${email} not found` });
 
     // Check if already in project
-    if (project.students.includes(invitedUser._id)) {
+    if (project.students.some(id => id.toString() === invitedUser._id.toString())) {
       return res.status(400).json({ message: "User is already a team member" });
     }
 
