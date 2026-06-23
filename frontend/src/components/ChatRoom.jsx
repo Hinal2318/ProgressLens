@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import { Send, User } from "lucide-react";
-import API from "../services/api";
+import API, { SERVER_URL } from "../services/api";
 import "./ChatRoom.css";
 
-const socket = io("http://localhost:5000", {
+const socket = io(SERVER_URL, {
   path: "/socket.io/",
   transports: ["websocket", "polling"],
   withCredentials: true

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import API from "../services/api";
+import API, { SERVER_URL } from "../services/api";
 import { ArrowLeft, BarChart2, CheckCircle, Clock, AlertCircle, FileText, Link as LinkIcon, Check, X } from "lucide-react";
 import "./FacultyProjectDetails.css";
 
@@ -185,7 +185,7 @@ const handleStatusUpdate = async (newStatus) => {
                         </a>
                       )}
                       {sub.filePath && (
-                        <a href={`http://localhost:5000/uploads/${sub.filePath.split(/[\\\\/]/).pop()}`} target="_blank" rel="noreferrer" className="asset-link doc">
+                        <a href={`${SERVER_URL}/uploads/${sub.filePath.split(/[\\\\/]/).pop()}`} target="_blank" rel="noreferrer" className="asset-link doc">
                           <FileText size={16} /> Document
                         </a>
                       )}

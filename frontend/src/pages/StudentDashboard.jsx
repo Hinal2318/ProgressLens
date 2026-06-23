@@ -2,7 +2,7 @@ import "./StudentDashboard.css";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom"; 
 import { motion } from "framer-motion";
-import API from "../services/api";
+import API, { SERVER_URL } from "../services/api";
 import { io } from "socket.io-client";
 import { FolderKanban, CheckCircle2, Clock, Activity as ActivityIcon, TrendingUp, Megaphone, Bell } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
@@ -36,7 +36,7 @@ export default function StudentDashboard() {
   }, []);
 
   useEffect(() => {
-    const socket = io("http://localhost:5000", {
+    const socket = io(SERVER_URL, {
       path: "/socket.io/",
       transports: ["websocket"]
     });

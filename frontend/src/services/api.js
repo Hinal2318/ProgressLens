@@ -1,7 +1,11 @@
 import axios from "axios";
 
+export const SERVER_URL = import.meta.env.VITE_API_BASE_URL 
+  ? import.meta.env.VITE_API_BASE_URL.replace(/\/api\/?$/, "")
+  : "https://progresslens.onrender.com";
+
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // backend URL
+  baseURL: `${SERVER_URL}/api`, // backend URL
 });
 
 // attach token to every request
