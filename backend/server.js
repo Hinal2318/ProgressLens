@@ -78,6 +78,10 @@ app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads")); 
 
+app.get("/", (req, res) => {
+  res.send("ProgressLens API is running...");
+}); 
+
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/progresslens";
 mongoose.connect(MONGO_URI)
