@@ -16,7 +16,8 @@ import {
   BarChart as BarIcon,
   PieChart as PieIcon,
   TrendingUp,
-  Target
+  Target,
+  Trash2
 } from "lucide-react";
 import { 
   BarChart, 
@@ -218,6 +219,17 @@ export default function ProjectDetails() {
     }
   };
 
+  const handleRemoveTeammate = async (userId, userName) => {
+    if (!window.confirm(`Are you sure you want to remove ${userName} from this project?`)) return;
+    try {
+      await API.post(`/projects/${id}/remove-teammate`, { userId });
+      alert("Teammate removed successfully.");
+      fetchProjectData();
+    } catch (error) {
+      alert(error.response?.data?.message || "Failed to remove teammate.");
+    }
+  };
+
   const handleDeleteTask = async (taskId) => {
     if (!window.confirm("Delete this task?")) return;
     try {
@@ -295,6 +307,15 @@ export default function ProjectDetails() {
                         <p>{student.email}</p>
                         {project.creator === student._id && <span className="manager-badge">Project Manager</span>}
                       </div>
+                      {isManager && student._id !== currentUserId && (
+                        <button 
+                          className="remove-member-btn" 
+                          onClick={() => handleRemoveTeammate(student._id, student.name)}
+                          title="Remove Teammate"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      )}
                     </motion.div>
                   ))}
                 </motion.div>

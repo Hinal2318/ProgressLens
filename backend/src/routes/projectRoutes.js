@@ -22,12 +22,14 @@ const {
     createProject,
     deleteProject, 
     updateProject,
-    inviteTeammate
+    inviteTeammate,
+    removeTeammate
 } = require("../controllers/projectController");
 
 // --- 📈 FACULTY SPECIFIC ROUTES ---
 
 router.post("/:id/invite", protect, inviteTeammate);
+router.post("/:id/remove-teammate", protect, removeTeammate);
 
 // 🚩 THIS WAS LINE 21: Now it uses valid functions!
 router.get("/supervised-projects", protect, authorize("faculty"), getFacultySupervisedProjects);

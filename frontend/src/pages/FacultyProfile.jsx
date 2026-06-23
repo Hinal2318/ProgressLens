@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { User, Mail, Building, BookOpen, Users, ClipboardCheck, LogOut, Edit2, Shield, X, Save } from "lucide-react";
+import { User, Mail, Building, BookOpen, Users, ClipboardCheck, LogOut, Edit2, Shield, X, Save, Trash2 } from "lucide-react";
 import "./FacultyProfile.css";
 
 export default function FacultyProfile() {
@@ -62,6 +62,22 @@ const handleUpdate = async (e) => {
     localStorage.clear();
     navigate("/auth"); // Redirect to unified Auth page
   };
+
+  const handleDeleteAccount = async () => {
+    const confirmDelete = window.confirm(
+      "⚠️ WARNING: Are you sure you want to permanently delete your account?\n\nThis will remove your profile, delete your reflections, and delete/clean up all projects you supervise. This action cannot be undone."
+    );
+    if (!confirmDelete) return;
+
+    try {
+      await API.delete("/users/delete-account");
+      alert("Your account has been deleted successfully.");
+      localStorage.clear();
+      navigate("/auth");
+    } catch (err) {
+      alert("Failed to delete account: " + (err.response?.data?.message || "Server Error"));
+    }
+  };
 // Inside FacultyProfile.jsx
 
   if (!data) return <div className="fp-loading"><span>Syncing Academic Data...</span></div>;
@@ -98,8 +114,12 @@ const handleUpdate = async (e) => {
 
             <div className="prof-divider"></div>
 
-            <button className="prof-btn-logout" onClick={handleLogout}>
+             <button className="prof-btn-logout" onClick={handleLogout}>
               <LogOut size={16} /> Secure Log Out
+            </button>
+
+            <button className="prof-btn-delete" onClick={handleDeleteAccount}>
+              <Trash2 size={16} /> Delete Account
             </button>
           </div>
 

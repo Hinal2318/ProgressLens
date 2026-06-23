@@ -171,6 +171,52 @@ const inviteTeammate = async (req, res) => {
   }
 };
 
+// REMOVE Teammate from existing project
+const removeTeammate = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const project = await Project.findById(req.params.id);
+
+    if (!project) return res.status(404).json({ message: "Project not found" });
+
+    // Ensure the requester is the project manager/creator
+    if (project.creator.toString() !== req.user.id.toString()) {
+      return res.status(403).json({ message: "Only the Project Manager can remove team members." });
+    }
+
+    // Check if user is in the project
+    const studentIndex = project.students.findIndex(id => id.toString() === userId.toString());
+    if (studentIndex === -1) {
+      return res.status(400).json({ message: "User is not a team member of this project" });
+    }
+
+    // Manager cannot remove themselves
+    if (userId.toString() === req.user.id.toString()) {
+      return res.status(400).json({ message: "You cannot remove yourself. You must delete the project instead." });
+    }
+
+    project.students.splice(studentIndex, 1);
+    await project.save();
+
+    // Clean up tasks assigned to this student in this project
+    await Task.deleteMany({ project: project._id, owner: userId });
+
+    const removedUser = await User.findById(userId);
+    const removedUserName = removedUser ? removedUser.name : "Teammate";
+
+    await logActivity(
+      req.user.id, 
+      project._id, 
+      `Removed ${removedUserName} from the project`, 
+      "Project"
+    );
+
+    res.json({ message: "Team member removed successfully", project });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getProjects,
   getMyProjects,
@@ -178,5 +224,6 @@ module.exports = {
   createProject,
   deleteProject,
   updateProject,
-  inviteTeammate
+  inviteTeammate,
+  removeTeammate
 };

@@ -359,3 +359,26 @@
   .prof-layout { grid-template-columns: 1fr; }
   .prof-stats-grid { grid-template-columns: 1fr; }
 }
+
+.prof-btn-delete {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #fee2e2;
+  background: #fef2f2;
+  color: #ef4444;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+
+.prof-btn-delete:hover {
+  background: #dc2626;
+  color: white;
+  border-color: #dc2626;
+}
